@@ -3,6 +3,8 @@
 #include <algorithm>
 #include <functional>
 
+#include <stdlib.h>
+
 #include "StoreNet.h"
 #include "Node.h"
 
@@ -210,7 +212,11 @@ static void PrintLineEq(boost::numeric::ublas::vector<int> incidence[], unsigned
 
 static int FlotsCalc(StoreNet &N)
 {
-	boost::numeric::ublas::vector<int> incidence[N.NbPlaces()];
+//	boost::numeric::ublas::vector<int> incidence[N.NbPlaces()];
+	boost::numeric::ublas::vector<int> *incidence;
+	
+	incidence = (boost::numeric::ublas::vector<int> *)malloc(
+							sizeof(boost::numeric::ublas::vector<int> *)*N.NbPlaces());
 
 // On indique à chaque vecteur le nombre d'éléments qu'il va contenir et mise à zéro de 
 // la matrice.
@@ -320,6 +326,8 @@ static int FlotsCalc(StoreNet &N)
 	cout << "nbplaces : " << N.NbPlaces() << " nbtrans : " << N.NbTransitions();
 	cout << " i : " << i << endl;
 #endif
+
+	free(incidence);
 
 	return 0;
 }
