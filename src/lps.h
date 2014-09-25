@@ -4,7 +4,7 @@
 #include <vector>
 #include <iostream>
 
-#include "lp_lib.h"
+#include "lpsolve/lp_lib.h"
 
 #include "LinearExpr.h"
 #include "LinearSyst.h"
